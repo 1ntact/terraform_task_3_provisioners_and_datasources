@@ -122,6 +122,8 @@ resource "azurerm_virtual_machine" "main" {
       "cloud-init status --wait",
       "sudo apt-get update -y",
       "sudo apt-get install -y nginx",
+      "sudo cp /home/testadmin/index.html /var/www/html/index.html",
+      "sudo systemctl restart nginx"
     ]
 
     connection {

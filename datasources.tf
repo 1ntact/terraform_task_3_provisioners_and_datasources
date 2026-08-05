@@ -3,22 +3,30 @@ data "azurerm_resource_group" "example" {
 }
 
 data "azurerm_virtual_network" "read_vnet" {
-  name                = azurerm_virtual_network.main.name
+  name                = "1ntact-vnet"
   resource_group_name = data.azurerm_resource_group.example.name
+
+  depends_on = [azurerm_virtual_network.main]
 }
 
 data "azurerm_subnet" "read_subnet" {
-  name                 = azurerm_subnet.internal.name
-  virtual_network_name = azurerm_virtual_network.main.name
+  name                 = "internal"
+  virtual_network_name = data.azurerm_virtual_network.read_vnet.name
   resource_group_name  = data.azurerm_resource_group.example.name
+
+  depends_on = [azurerm_subnet.internal]
 }
 
 data "azurerm_network_interface" "read_nic" {
-  name                = azurerm_network_interface.main.name
+  name                = "1ntact-nic"
   resource_group_name = data.azurerm_resource_group.example.name
+
+  depends_on = [azurerm_network_interface.main]
 }
 
 data "azurerm_virtual_machine" "read_vm" {
-  name                = azurerm_virtual_machine.main.name
+  name                = "${var.prefix}-vm"
   resource_group_name = data.azurerm_resource_group.example.name
+
+  depends_on = [azurerm_virtual_machine.main]
 }
