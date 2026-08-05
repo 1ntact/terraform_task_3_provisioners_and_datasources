@@ -76,7 +76,7 @@ resource "azurerm_virtual_machine" "main" {
   vm_size               = "Standard_D2s_v3"
 
   #Uncomment this line to delete the OS disk automatically when deleting the VM
-   delete_os_disk_on_termination = true
+  delete_os_disk_on_termination = true
 
   #Uncomment this line to delete the data disks automatically when deleting the VM
   delete_data_disks_on_termination = true
@@ -119,9 +119,9 @@ resource "azurerm_virtual_machine" "main" {
 
   provisioner "remote-exec" {
     inline = [
-        "cloud-init status --wait",
-        "sudo apt-get update -y",
-        "sudo apt-get install -y nginx",
+      "cloud-init status --wait",
+      "sudo apt-get update -y",
+      "sudo apt-get install -y nginx",
     ]
 
     connection {
