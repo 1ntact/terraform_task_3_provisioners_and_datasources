@@ -1,4 +1,5 @@
 variable "prefix" {
-  default = "tfvmex"
+  description = "Prefix for resources"
+  type        = string
+  default     = "tfvmex"
 }
-
